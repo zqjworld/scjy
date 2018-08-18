@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.sc.scjy.dao.ForderMapper" >
+  <resultMap id="BaseResultMap" type="org.sc.scjy.entity.Forder" >
+    <id column="fid" property="fid" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="pname" property="pname" jdbcType="VARCHAR" />
+    <result column="pcount" property="pcount" jdbcType="VARCHAR" />
+    <result column="pstandard" property="pstandard" jdbcType="VARCHAR" />
+    <result column="pprice" property="pprice" jdbcType="DOUBLE" />
+    <result column="ptype" property="ptype" jdbcType="VARCHAR" />
+    <result column="ppic" property="ppic" jdbcType="VARCHAR" />
+    <result column="bid" property="bid" jdbcType="INTEGER" />
+    <result column="bname" property="bname" jdbcType="VARCHAR" />
+    <result column="btel" property="btel" jdbcType="VARCHAR" />
+    <result column="bwx_account" property="bwxAccount" jdbcType="VARCHAR" />
+    <result column="sid" property="sid" jdbcType="INTEGER" />
+    <result column="sname" property="sname" jdbcType="VARCHAR" />
+    <result column="stel" property="stel" jdbcType="VARCHAR" />
+    <result column="swx_account" property="swxAccount" jdbcType="VARCHAR" />
+    <result column="saddress" property="saddress" jdbcType="VARCHAR" />
+    <result column="tradetime" property="tradetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fid, pid, pname, pcount, pstandard, pprice, ptype, ppic, bid, bname, btel, bwx_account, 
+    sid, sname, stel, swx_account, saddress, tradetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sc_forder
+    where fid = #{fid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sc_forder
+    where fid = #{fid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.sc.scjy.entity.Forder" >
+    insert into sc_forder (fid, pid, pname, 
+      pcount, pstandard, pprice, 
+      ptype, ppic, bid, bname, 
+      btel, bwx_account, sid, 
+      sname, stel, swx_account, 
+      saddress, tradetime)
+    values (#{fid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{pname,jdbcType=VARCHAR}, 
+      #{pcount,jdbcType=VARCHAR}, #{pstandard,jdbcType=VARCHAR}, #{pprice,jdbcType=DOUBLE}, 
+      #{ptype,jdbcType=VARCHAR}, #{ppic,jdbcType=VARCHAR}, #{bid,jdbcType=INTEGER}, #{bname,jdbcType=VARCHAR}, 
+      #{btel,jdbcType=VARCHAR}, #{bwxAccount,jdbcType=VARCHAR}, #{sid,jdbcType=INTEGER}, 
+      #{sname,jdbcType=VARCHAR}, #{stel,jdbcType=VARCHAR}, #{swxAccount,jdbcType=VARCHAR}, 
+      #{saddress,jdbcType=VARCHAR}, #{tradetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.sc.scjy.entity.Forder" >
+    insert into sc_forder
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fid != null" >
+        fid,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="pname != null" >
+        pname,
+      </if>
+      <if test="pcount != null" >
+        pcount,
+      </if>
+      <if test="pstandard != null" >
+        pstandard,
+      </if>
+      <if test="pprice != null" >
+        pprice,
+      </if>
+      <if test="ptype != null" >
+        ptype,
+      </if>
+      <if test="ppic != null" >
+        ppic,
+      </if>
+      <if test="bid != null" >
+        bid,
+      </if>
+      <if test="bname != null" >
+        bname,
+      </if>
+      <if test="btel != null" >
+        btel,
+      </if>
+      <if test="bwxAccount != null" >
+        bwx_account,
+      </if>
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="sname != null" >
+        sname,
+      </if>
+      <if test="stel != null" >
+        stel,
+      </if>
+      <if test="swxAccount != null" >
+        swx_account,
+      </if>
+      <if test="saddress != null" >
+        saddress,
+      </if>
+      <if test="tradetime != null" >
+        tradetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fid != null" >
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="pname != null" >
+        #{pname,jdbcType=VARCHAR},
+      </if>
+      <if test="pcount != null" >
+        #{pcount,jdbcType=VARCHAR},
+      </if>
+      <if test="pstandard != null" >
+        #{pstandard,jdbcType=VARCHAR},
+      </if>
+      <if test="pprice != null" >
+        #{pprice,jdbcType=DOUBLE},
+      </if>
+      <if test="ptype != null" >
+        #{ptype,jdbcType=VARCHAR},
+      </if>
+      <if test="ppic != null" >
+        #{ppic,jdbcType=VARCHAR},
+      </if>
+      <if test="bid != null" >
+        #{bid,jdbcType=INTEGER},
+      </if>
+      <if test="bname != null" >
+        #{bname,jdbcType=VARCHAR},
+      </if>
+      <if test="btel != null" >
+        #{btel,jdbcType=VARCHAR},
+      </if>
+      <if test="bwxAccount != null" >
+        #{bwxAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="sname != null" >
+        #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="stel != null" >
+        #{stel,jdbcType=VARCHAR},
+      </if>
+      <if test="swxAccount != null" >
+        #{swxAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="saddress != null" >
+        #{saddress,jdbcType=VARCHAR},
+      </if>
+      <if test="tradetime != null" >
+        #{tradetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.sc.scjy.entity.Forder" >
+    update sc_forder
+    <set >
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="pname != null" >
+        pname = #{pname,jdbcType=VARCHAR},
+      </if>
+      <if test="pcount != null" >
+        pcount = #{pcount,jdbcType=VARCHAR},
+      </if>
+      <if test="pstandard != null" >
+        pstandard = #{pstandard,jdbcType=VARCHAR},
+      </if>
+      <if test="pprice != null" >
+        pprice = #{pprice,jdbcType=DOUBLE},
+      </if>
+      <if test="ptype != null" >
+        ptype = #{ptype,jdbcType=VARCHAR},
+      </if>
+      <if test="ppic != null" >
+        ppic = #{ppic,jdbcType=VARCHAR},
+      </if>
+      <if test="bid != null" >
+        bid = #{bid,jdbcType=INTEGER},
+      </if>
+      <if test="bname != null" >
+        bname = #{bname,jdbcType=VARCHAR},
+      </if>
+      <if test="btel != null" >
+        btel = #{btel,jdbcType=VARCHAR},
+      </if>
+      <if test="bwxAccount != null" >
+        bwx_account = #{bwxAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null" >
+        sid = #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="sname != null" >
+        sname = #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="stel != null" >
+        stel = #{stel,jdbcType=VARCHAR},
+      </if>
+      <if test="swxAccount != null" >
+        swx_account = #{swxAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="saddress != null" >
+        saddress = #{saddress,jdbcType=VARCHAR},
+      </if>
+      <if test="tradetime != null" >
+        tradetime = #{tradetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where fid = #{fid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.sc.scjy.entity.Forder" >
+    update sc_forder
+    set pid = #{pid,jdbcType=INTEGER},
+      pname = #{pname,jdbcType=VARCHAR},
+      pcount = #{pcount,jdbcType=VARCHAR},
+      pstandard = #{pstandard,jdbcType=VARCHAR},
+      pprice = #{pprice,jdbcType=DOUBLE},
+      ptype = #{ptype,jdbcType=VARCHAR},
+      ppic = #{ppic,jdbcType=VARCHAR},
+      bid = #{bid,jdbcType=INTEGER},
+      bname = #{bname,jdbcType=VARCHAR},
+      btel = #{btel,jdbcType=VARCHAR},
+      bwx_account = #{bwxAccount,jdbcType=VARCHAR},
+      sid = #{sid,jdbcType=INTEGER},
+      sname = #{sname,jdbcType=VARCHAR},
+      stel = #{stel,jdbcType=VARCHAR},
+      swx_account = #{swxAccount,jdbcType=VARCHAR},
+      saddress = #{saddress,jdbcType=VARCHAR},
+      tradetime = #{tradetime,jdbcType=TIMESTAMP}
+    where fid = #{fid,jdbcType=INTEGER}
+  </update>
+  
+  <select id="findAllForderBybid" resultMap="BaseResultMap" resultType="org.sc.scjy.entity.Forder" >
+    select 
+    <include refid="Base_Column_List" />
+    from sc_forder
+    where bid = #{bid,jdbcType=INTEGER} or sid=#{bid,jdbcType=INTEGER}
+  </select>
+  
+  
+  <select id="findForderBypName" resultMap="BaseResultMap" resultType="org.sc.scjy.entity.Forder" >
+    select 
+    <include refid="Base_Column_List" />
+    from sc_forder
+    where pname like CONCAT(CONCAT('%', #{0}), '%') and bid = #{1} or sid=#{1} and  pname like CONCAT(CONCAT('%', #{0}), '%')
+  </select>
+  
+  <select id="findAllForder" resultMap="BaseResultMap" resultType="org.sc.scjy.entity.Forder" >
+    select 
+    <include refid="Base_Column_List" />
+    from sc_forder
+  </select>
+  
+    <select id="getForderCount" resultType="java.util.HashMap"  >
+	select count(f.fid) id_count,
+	case saddress
+	when '燕山校区' then 1
+	when '舜耕校区' then 2
+	when '明水校区' then 3
+	when '圣井校区' then 4
+	when '莱芜校区' then 5
+	end saddress
+	from sc_forder f
+	group by f.saddress
+  </select>
+  
+    <select id="getForderCountZ" resultType="java.util.HashMap"  >
+	select count(f.fid) id_count, date_format(f.tradetime,'%y-%m-%d')
+	f_time
+	from sc_forder f
+	group by f_time
+	limit 5
+  </select>
+  
+
+</mapper>

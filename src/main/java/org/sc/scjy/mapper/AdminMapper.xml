@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.sc.scjy.dao.AdminMapper" >
+  <resultMap id="BaseResultMap" type="org.sc.scjy.entity.Admin" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="admin_name" property="adminName" jdbcType="VARCHAR" />
+    <result column="admin_pass" property="adminPass" jdbcType="VARCHAR" />
+    <result column="admin_type" property="adminType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, admin_name, admin_pass, admin_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sc_admin
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+ 
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sc_admin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.sc.scjy.entity.Admin" >
+    insert into sc_admin (id, admin_name, admin_pass, 
+      admin_type)
+    values (#{id,jdbcType=INTEGER}, #{adminName,jdbcType=VARCHAR}, #{adminPass,jdbcType=VARCHAR}, 
+      #{adminType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.sc.scjy.entity.Admin" >
+    insert into sc_admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="adminName != null" >
+        admin_name,
+      </if>
+      <if test="adminPass != null" >
+        admin_pass,
+      </if>
+      <if test="adminType != null" >
+        admin_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="adminName != null" >
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPass != null" >
+        #{adminPass,jdbcType=VARCHAR},
+      </if>
+      <if test="adminType != null" >
+        #{adminType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.sc.scjy.entity.Admin" >
+    update sc_admin
+    <set >
+      <if test="adminName != null" >
+        admin_name = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPass != null" >
+        admin_pass = #{adminPass,jdbcType=VARCHAR},
+      </if>
+      <if test="adminType != null" >
+        admin_type = #{adminType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.sc.scjy.entity.Admin" >
+    update sc_admin
+    set admin_name = #{adminName,jdbcType=VARCHAR},
+      admin_pass = #{adminPass,jdbcType=VARCHAR},
+      admin_type = #{adminType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findAll" resultType="org.sc.scjy.entity.Admin" resultMap="BaseResultMap" >
+  select 
+  <include refid="Base_Column_List" />
+  from sc_admin
+  </select>
+  
+   <select id="findByAdmin" parameterType="string" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" />
+  	from sc_admin 
+  	where admin_name = #{adminName,jdbcType=VARCHAR} and admin_pass = #{adminPass,jdbcType=VARCHAR}
+  </select>
+  
+    <select id="findAdminByAdminName" resultType="org.sc.scjy.entity.Admin"  resultMap="BaseResultMap">
+  		select
+  			<include refid="Base_Column_List"/>
+  		from sc_admin	
+  		where admin_name like CONCAT(CONCAT('%', #{adminName}), '%')
+  </select>
+</mapper>

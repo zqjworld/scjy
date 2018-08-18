@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.sc.scjy.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="org.sc.scjy.entity.User" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="userpass" property="userpass" jdbcType="VARCHAR" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+    <result column="sno" property="sno" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="wxaccount" property="wxaccount" jdbcType="VARCHAR" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="major" property="major" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="question" property="question" jdbcType="VARCHAR" />
+    <result column="reply" property="reply" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, userpass, realname, sno, tel, wxaccount, department, major, email, 
+    address, question, reply
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sc_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sc_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.sc.scjy.entity.User" >
+    insert into sc_user (id, username, userpass, 
+      realname, sno, tel, 
+      wxaccount, department, major, 
+      email, address, question, 
+      reply)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{userpass,jdbcType=VARCHAR}, 
+      #{realname,jdbcType=VARCHAR}, #{sno,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
+      #{wxaccount,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR}, 
+      #{reply,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.sc.scjy.entity.User" >
+    insert into sc_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="userpass != null" >
+        userpass,
+      </if>
+      <if test="realname != null" >
+        realname,
+      </if>
+      <if test="sno != null" >
+        sno,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="wxaccount != null" >
+        wxaccount,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+      <if test="major != null" >
+        major,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="question != null" >
+        question,
+      </if>
+      <if test="reply != null" >
+        reply,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userpass != null" >
+        #{userpass,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="sno != null" >
+        #{sno,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="wxaccount != null" >
+        #{wxaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null" >
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="question != null" >
+        #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="reply != null" >
+        #{reply,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.sc.scjy.entity.User" >
+    update sc_user
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userpass != null" >
+        userpass = #{userpass,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="sno != null" >
+        sno = #{sno,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="wxaccount != null" >
+        wxaccount = #{wxaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null" >
+        major = #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="question != null" >
+        question = #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="reply != null" >
+        reply = #{reply,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.sc.scjy.entity.User" >
+    update sc_user
+    set username = #{username,jdbcType=VARCHAR},
+      userpass = #{userpass,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      sno = #{sno,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      wxaccount = #{wxaccount,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      major = #{major,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      question = #{question,jdbcType=VARCHAR},
+      reply = #{reply,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findAll" resultType="org.sc.scjy.entity.User" resultMap="BaseResultMap" >
+  select 
+  <include refid="Base_Column_List" />
+  from sc_user
+  </select>
+  
+  <select id="login" parameterType="java.lang.String" resultType="org.sc.scjy.entity.User">
+  		select
+  			<include refid="Base_Column_List" />
+  		from sc_user
+  		where username = #{username,jdbcType=VARCHAR} and userpass = #{userpass,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findUserByUserName" resultType="org.sc.scjy.entity.User"  resultMap="BaseResultMap">
+  		select
+  			<include refid="Base_Column_List"/>
+  		from sc_user	
+  		where username like CONCAT(CONCAT('%', #{username}), '%')
+  </select>
+  
+  
+   <select id="checkUserName" resultType="org.sc.scjy.entity.User" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sc_user
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
+  
+  
+  <select id="getUserCount" resultType="java.util.HashMap"  >
+    select count(u.id) id_count, 
+    case address 
+    when '燕山校区' then 1 
+    when '舜耕校区' then 2
+    when '明水校区' then 3
+    when '圣井校区' then 4
+    when '莱芜校区' then 5
+    end  address
+    from    sc_user u
+    group by u.address
+  </select>
+  
+</mapper>

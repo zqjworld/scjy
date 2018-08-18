@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.sc.scjy.dao.ProductMapper" >
+  <resultMap id="BaseResultMap" type="org.sc.scjy.entity.Product" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pname" property="pname" jdbcType="VARCHAR" />
+    <result column="pprice" property="pprice" jdbcType="DOUBLE" />
+    <result column="pcount" property="pcount" jdbcType="VARCHAR" />
+    <result column="pstandard" property="pstandard" jdbcType="VARCHAR" />
+    <result column="pdesc" property="pdesc" jdbcType="VARCHAR" />
+    <result column="pdate" property="pdate" jdbcType="TIMESTAMP" />
+    <result column="ppic" property="ppic" jdbcType="VARCHAR" />
+    <result column="ptype" property="ptype" jdbcType="VARCHAR" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <!-- 设置一对一关联关系 -->
+    <association property="user" resultMap="userResultMap"></association>
+  </resultMap>
+  
+  <resultMap id="userResultMap" type="org.sc.scjy.entity.User" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="userpass" property="userpass" jdbcType="VARCHAR" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+    <result column="sno" property="sno" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="wxaccount" property="wxaccount" jdbcType="VARCHAR" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="major" property="major" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="question" property="question" jdbcType="VARCHAR" />
+    <result column="reply" property="reply" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    p.id id, p.pname pname, p.pprice pprice, p.pcount pcount, p.pstandard pstandard, p.pdesc pdesc, p.pdate pdate, p.ppic ppic, p.ptype ptype, p.uid uid,t.username username,t.wxaccount wxaccount,t.tel tel,t.email email,t.address address
+  </sql>
+  
+  <sql id="Pro_Column_List" >
+    p.id id, p.pname pname, p.pprice pprice, p.pcount pcount, p.pstandard pstandard, p.pdesc pdesc, p.pdate pdate, p.ppic ppic, p.ptype ptype, p.uid uid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Pro_Column_List" />
+    from sc_product p
+    where p.id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sc_product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.sc.scjy.entity.Product" >
+    insert into sc_product (id, pname, pprice, 
+      pcount, pstandard, pdesc, 
+      pdate, ppic, ptype, 
+      uid)
+    values (#{id,jdbcType=INTEGER}, #{pname,jdbcType=VARCHAR}, #{pprice,jdbcType=DOUBLE}, 
+      #{pcount,jdbcType=VARCHAR}, #{pstandard,jdbcType=VARCHAR}, #{pdesc,jdbcType=VARCHAR}, 
+      #{pdate,jdbcType=TIMESTAMP}, #{ppic,jdbcType=VARCHAR}, #{ptype,jdbcType=VARCHAR}, 
+      #{uid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="org.sc.scjy.entity.Product" >
+    insert into sc_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="pname != null" >
+        pname,
+      </if>
+      <if test="pprice != null" >
+        pprice,
+      </if>
+      <if test="pcount != null" >
+        pcount,
+      </if>
+      <if test="pstandard != null" >
+        pstandard,
+      </if>
+      <if test="pdesc != null" >
+        pdesc,
+      </if>
+      <if test="pdate != null" >
+        pdate,
+      </if>
+      <if test="ppic != null" >
+        ppic,
+      </if>
+      <if test="ptype != null" >
+        ptype,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pname != null" >
+        #{pname,jdbcType=VARCHAR},
+      </if>
+      <if test="pprice != null" >
+        #{pprice,jdbcType=DOUBLE},
+      </if>
+      <if test="pcount != null" >
+        #{pcount,jdbcType=VARCHAR},
+      </if>
+      <if test="pstandard != null" >
+        #{pstandard,jdbcType=VARCHAR},
+      </if>
+      <if test="pdesc != null" >
+        #{pdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="pdate != null" >
+        #{pdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ppic != null" >
+        #{ppic,jdbcType=VARCHAR},
+      </if>
+      <if test="ptype != null" >
+        #{ptype,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="org.sc.scjy.entity.Product" >
+    update sc_product
+    <set >
+      <if test="pname != null" >
+        pname = #{pname,jdbcType=VARCHAR},
+      </if>
+      <if test="pprice != null" >
+        pprice = #{pprice,jdbcType=DOUBLE},
+      </if>
+      <if test="pcount != null" >
+        pcount = #{pcount,jdbcType=VARCHAR},
+      </if>
+      <if test="pstandard != null" >
+        pstandard = #{pstandard,jdbcType=VARCHAR},
+      </if>
+      <if test="pdesc != null" >
+        pdesc = #{pdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="pdate != null" >
+        pdate = #{pdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ppic != null" >
+        ppic = #{ppic,jdbcType=VARCHAR},
+      </if>
+      <if test="ptype != null" >
+        ptype = #{ptype,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.sc.scjy.entity.Product" >
+    update sc_product
+    set pname = #{pname,jdbcType=VARCHAR},
+      pprice = #{pprice,jdbcType=DOUBLE},
+      pcount = #{pcount,jdbcType=VARCHAR},
+      pstandard = #{pstandard,jdbcType=VARCHAR},
+      pdesc = #{pdesc,jdbcType=VARCHAR},
+      pdate = #{pdate,jdbcType=TIMESTAMP},
+      ppic = #{ppic,jdbcType=VARCHAR},
+      ptype = #{ptype,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from sc_product p,sc_user t
+    where p.uid=t.id
+  </select>
+  
+   <select id="findProductByproName" resultType="org.sc.scjy.entity.Product"  resultMap="BaseResultMap">
+  		select
+  			<include refid="Base_Column_List"/>
+  		from sc_product	p,sc_user t
+  		where pname like CONCAT(CONCAT('%', #{pname}), '%') and p.uid=t.id
+  </select>
+  
+  <select id="findProductByUid" resultType="org.sc.scjy.entity.Product"  resultMap="BaseResultMap">
+  		select
+  		<include refid="Base_Column_List"/>
+  		from sc_product p,sc_user t
+  		where p.uid = #{uid,jdbcType=INTEGER} and p.uid=t.id
+  </select>
+  
+  <select id="findProductByPtype" resultType="org.sc.scjy.entity.Product"  resultMap="BaseResultMap">
+  		select
+  			<include refid="Base_Column_List"/>
+  		from sc_product	p,sc_user t
+  		where p.ptype = #{ptype,jdbcType=VARCHAR} and p.uid=t.id
+  </select>
+  
+  
+  <select id="findProNew" resultType="org.sc.scjy.entity.Product"  resultMap="BaseResultMap">
+  		select
+  			<include refid="Base_Column_List"/>
+  		from sc_product	p,sc_user t
+  		where p.uid=t.id
+  		order by pdate desc limit 0,4
+  </select>
+  
+ <select id="checkProName" resultType="org.sc.scjy.entity.Product" parameterType="java.lang.String" >
+    select 
+    <include refid="Pro_Column_List" />
+    from sc_product p
+    where p.pname = #{pname,jdbcType=VARCHAR}
+  </select>
+  
+  
+  <select id="getProName" resultType="java.util.HashMap"  >
+    select 
+    p.pname
+    from sc_product p
+  </select>
+  
+    <select id="getProCount" resultType="java.util.HashMap"  >
+    select 
+    count(p.id) id_count,p.ptype
+    from sc_product p 
+    group by p.ptype;
+  </select>
+</mapper>
